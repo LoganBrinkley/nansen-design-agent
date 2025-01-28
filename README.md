@@ -2,6 +2,19 @@
 
 A specialized Next.js application that serves as an AI-powered design agent for Nansen, helping teams build consistent experiences that align with Nansen's design system. This agent works seamlessly with Cursor IDE to provide real-time design guidance and component generation.
 
+## Quick Start with Cursor Composer
+
+1. Open Cursor IDE
+2. Press ⌘K (Mac) or Ctrl+K (Windows) to open the Composer
+3. Paste this command:
+   ```
+   Clone https://github.com/LoganBrinkley/nansen-design-agent.git, install dependencies, and start the development server
+   ```
+4. After cloning and installation, you'll need to set up your Figma credentials:
+   - Copy `.env.example` to `.env.local`
+   - Add your Figma access token and file key (see Figma Setup section below)
+   - Restart the development server
+
 ## Overview
 
 This design agent helps you:

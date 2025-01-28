@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-tokens": "ts-node --project scripts/tsconfig.json scripts/generateDesignTokens.ts"
+    "generate-tokens": "ts-node --project scripts/tsconfig.json scripts/generateDesignTokens.ts",
+    "setup": "cp .env.example .env.local && echo '\nSetup complete! Now add your Figma credentials to .env.local and run npm run dev\n'"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.48",
