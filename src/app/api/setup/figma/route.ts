@@ -27,9 +27,28 @@ export async function POST(req: Request) {
 
     // If we get here, the credentials are valid
     const envPath = path.join(process.cwd(), '.env.local');
-    const envContent = `FIGMA_ACCESS_TOKEN=${figmaToken}\nFIGMA_FILE_KEY=${fileKey}\n`;
+    
+    // Read existing .env.local content
+    let envContent = '';
+    try {
+      envContent = await fs.readFile(envPath, 'utf-8');
+    } catch (error) {
+      // File doesn't exist yet, that's okay
+    }
 
-    await fs.writeFile(envPath, envContent, { flag: 'a' });
+    // Keep NODE_ENV if it exists, remove any existing Figma credentials
+    const lines = envContent.split('\n').filter(line => 
+      line.trim() !== '' && 
+      !line.startsWith('FIGMA_ACCESS_TOKEN=') && 
+      !line.startsWith('FIGMA_FILE_KEY=')
+    );
+
+    // Add new Figma credentials
+    lines.push(`FIGMA_ACCESS_TOKEN=${figmaToken}`);
+    lines.push(`FIGMA_FILE_KEY=${fileKey}`);
+
+    // Write back to file
+    await fs.writeFile(envPath, lines.join('\n') + '\n');
 
     return NextResponse.json({ success: true });
   } catch (error) {

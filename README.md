@@ -29,15 +29,6 @@ This design agent helps you:
   - AI integrations (OpenAI, Anthropic, Replicate)
   - Real-time development server with hot reloading
 
-## Using with Cursor IDE
-
-1. Open the project in Cursor IDE
-2. Use the Cursor Composer (⌘K) to interact with the design agent
-3. Example prompts:
-   - "Create a button component following Nansen's design system"
-   - "Generate a card layout using Nansen's spacing guidelines"
-   - "Add a navigation bar with Nansen's brand colors"
-
 ## Getting Started
 
 ### Prerequisites
@@ -59,15 +50,20 @@ cd nansen-design-agent
 npm install
 ```
 
-3. Start the development server:
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
+Then edit `.env.local` and add your credentials:
+- Required: Figma credentials (see Figma Setup section below)
+- Optional: AI service credentials if using those features
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:3000 in your browser and follow the setup process:
-   - You'll be prompted to enter your Figma credentials
-   - The application will validate your credentials and configure the environment
-   - Once configured, you'll have access to Nansen's design system
+5. Open http://localhost:3000 in your browser and follow the setup process
 
 ### Figma Setup
 
@@ -78,13 +74,25 @@ The application requires access to Nansen's Figma design system. You'll need:
    - Go to Settings → Account → Personal access tokens
    - Create a new access token
    - Copy the token when prompted (you won't be able to see it again)
+   - Add it to your `.env.local` as `FIGMA_ACCESS_TOKEN`
 
 2. The Figma File Key:
    - Open Nansen's design system in Figma
    - The file key is in the URL: figma.com/file/FILE_KEY/...
    - Copy the FILE_KEY portion
+   - Add it to your `.env.local` as `FIGMA_FILE_KEY`
 
-These credentials will be securely stored in your local environment and used to sync with Nansen's design system.
+### Optional Features
+
+The project includes several optional integrations that can be enabled by adding the appropriate API keys to your `.env.local`:
+
+- Firebase Authentication and Storage
+- OpenAI for AI assistance
+- Anthropic Claude for AI assistance
+- Replicate for image generation
+- Deepgram for audio transcription
+
+See `.env.example` for all available configuration options.
 
 ## Design System Integration
 

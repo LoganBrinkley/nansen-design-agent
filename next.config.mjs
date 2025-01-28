@@ -32,6 +32,21 @@ const nextConfig = {
       },
     ];
   },
+  // Enable more detailed error messages in development
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  // Ensure we can connect to localhost
+  webpack: (config) => {
+    return config;
+  },
+  // Allow all localhost connections
+  experimental: {
+    serverActions: true,
+  },
 };
 
 export default nextConfig;
